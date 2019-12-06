@@ -100,6 +100,7 @@ def check_people_to_post(msg, history):
 
 
 def check_multiple_words(msg):
+    msg = msg.translate(str.maketrans('', '', string.punctuation)) # remove punctuation
     return len(msg.split()) > 1
 
 
