@@ -151,22 +151,4 @@ async def get_stats():
     return user_stats
 
 
-class Message:
-    def __init__(self, content, author):
-        self.content = content
-        self.author = author
-
-
-async def save_story():
-    history = []
-    channel = client.get_channel(631319628228067339)
-    async for msg in channel.history(limit=10000):
-        history.append(Message(msg.clean_content, msg.author.name))
-
-    json_string = json.dumps([message.__dict__ for message in history])
-    f = open("messages.json", "w")
-    f.write(json_string)
-    f.close()
-
-
 client.run(token)
