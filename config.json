@@ -1,0 +1,13 @@
+{
+  "token": "0",
+  "story_channel_id": "0",
+  "command_channel_id": "0",
+  "people_to_post": "3",
+  "log_to_file": "True",
+  "banned_words" : [
+    "supercalifragilisticexpialidocious"
+  ],
+  "banned_users" : [
+    "supercalifragilisticexpialidocious"
+  ]
+}
