@@ -28,8 +28,8 @@ if config["log_to_file"]:
 token = config["token"]
 client = discord.Client()
 
-story_channel_id = config["story_channel_id"]
-command_channel_id = config["command_channel_id"]
+story_channel_id = int(config["story_channel_id"])
+command_channel_id = int(config["command_channel_id"])
 
 banned_words = []
 for word in config["banned_words"]:
@@ -39,7 +39,7 @@ banned_users = []
 for user in config["banned_users"]:
     banned_words.append(user)
 
-people_to_post = config["people_to_post"]
+people_to_post = int(config["people_to_post"])
 
 
 @client.event
@@ -49,10 +49,6 @@ async def on_ready():
 
 @client.event
 async def on_message(msg):
-    if msg.channel.id == 631319628228067339:
-        if msg.clean_content == "!storysave":
-            await save_story()
-
     if msg.channel.id == story_channel_id:
         channel = msg.channel
         msg_text = msg.clean_content
@@ -77,6 +73,12 @@ async def on_message(msg):
     if msg.channel.id == command_channel_id:
         channel = msg.channel
         msg_text = msg.clean_content
+
+        if msg_text == "!summon":
+            await msg.channel.send("https://i.imgur.com/zF1GGLa.png")
+
+        if msg_text == "!storyhelp":
+            await msg.channel.send("``` !storytime, !storystats ```")
 
         if msg_text == "!storytime":
             logger.info(f"{msg.author.name} used !storytime")
